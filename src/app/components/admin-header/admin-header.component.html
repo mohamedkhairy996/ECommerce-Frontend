@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Product Page - Admin HTML Template</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
+    />
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Roboto" />
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="css/templatemo-style.css">
+    <!--
+	Product Admin CSS Template
+	https://templatemo.com/tm-524-product-admin
+	-->
+  </head>
+
+  <body id="reportsPage">
+    <nav class="navbar navbar-expand-xl">
+      <div class="container h-100">
+        <a class="navbar-brand" href="index.html">
+          <h1 class="tm-site-title mb-0">Product Admin</h1>
+        </a>
+        <button
+          class="navbar-toggler ml-auto mr-0"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars tm-nav-icon"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mx-auto h-100">
+            <li class="nav-item">
+              <a class="nav-link" href="/home">
+                <i class="fa fa-home"></i> Home
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="/admin/addProduct">
+                <i class="fas fa-shopping-cart"></i> Add-Product
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link " href="/admin/products">
+                <i class="fa fa-shopping-basket"></i> Products
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/accounts">
+                <i class="far fa-user"></i> Accounts
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/orders">
+                <i class="fa fa-motorcycle"></i> Orders
+              </a>
+            </li>
+            
+          </ul>
+          <ul class="navbar-nav">
+            <li class="user-auth" style="margin-left:auto; display:flex; align-items:center; gap:10px;">
+							<!-- Shopping Cart -->
+							<a class="shopping-cart" routerLink="/cart" *ngIf="user && user.username">
+								<i class="fas fa-shopping-cart"></i>
+							</a>
+
+							<!-- User Info / Login / Logout -->
+							<ng-container *ngIf="user; else loginLink" >
+								<a href="#">Welcome, {{ user.username }}</a>
+								<a href="#" (click)="logout()">Logout</a>
+							</ng-container>
+							<ng-template #loginLink>
+								<a routerLink="/login">Login</a>
+							</ng-template>
+						</li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </body>

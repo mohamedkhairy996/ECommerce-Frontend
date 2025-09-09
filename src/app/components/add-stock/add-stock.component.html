@@ -1,0 +1,54 @@
+<body>
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+
+          <!-- العنوان -->
+          <div class="row">
+            <div class="col-12">
+              <h2 class="tm-block-title d-inline-block">Add Store</h2>
+            </div>
+          </div>
+
+          <!-- الفورم -->
+          <form [formGroup]="storeForm" (ngSubmit)="onSubmit()" class="row tm-edit-product-row">
+
+            <!-- اسم المخزن -->
+            <div class="form-group mb-3 col-12">
+              <label for="name">Store Name</label>
+              <input id="name" type="text" class="form-control" formControlName="name" />
+            </div>
+
+            <!-- الوصف -->
+            <div class="form-group mb-3 col-12">
+              <label for="description">Description</label>
+              <textarea id="description" class="form-control" rows="3" formControlName="description"></textarea>
+            </div>
+
+            <!-- العنوان -->
+            <div class="form-group mb-3 col-12">
+              <label for="address">Address</label>
+              <input id="address" type="text" class="form-control" formControlName="address" />
+            </div>
+
+            <!-- التليفون -->
+            <div class="form-group mb-3 col-12">
+              <label for="phone">Phone</label>
+              <input id="phone" type="text" class="form-control" formControlName="phone" />
+            </div>
+
+            <!-- زرار الإضافة -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                Add Store Now
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

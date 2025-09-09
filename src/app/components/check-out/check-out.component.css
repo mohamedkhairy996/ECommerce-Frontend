@@ -1,0 +1,21 @@
+/* SweetAlert RTL Styling */
+.rtl-swal {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.rtl-title {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.rtl-html {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+/* General Styling */
+::ng-deep .swal2-confirm {
+  margin-left: 0.5em !important;
+  margin-right: 0 !important;
+}

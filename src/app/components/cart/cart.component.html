@@ -1,0 +1,106 @@
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+
+<body>
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Cart</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- cart -->
+	<div class="cart-section mt-150 mb-150" *ngIf="cart.data.itemCount > 0">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-md-12">
+					<div class="cart-table-wrap">
+						<table class="cart-table ">
+							<thead class="cart-table-head ">
+								<tr class="table-head-row ">
+									<th class="product-remove"></th>
+									<th class="product-image" >Product Image</th>
+									<th class="product-name">Name</th>
+									<th class="product-price">Price</th>
+									<th class="product-quantity"></th>
+									<th class="product-total">Quantity</th>
+									<th class="product-quantity"></th>
+
+								</tr>
+							</thead>
+							<tbody>
+								@for (item of cart.data.cartItems; track $index) 
+                                {
+                                    <tr class="table-body-row" >
+                                        <td class="product-remove"><a (click)="removeProductFromCart(item.id)"><i class="far fa-window-close"></i></a></td>
+                                        <td class="" ><img [src]="'data:image/png;base64,' + item.product.imageData" alt=""></td>
+                                        <td class="product-name">{{item.product.name}}</td>
+                                        <td class="product-price">${{item.product.price}}</td>
+                                        <td class="product-quantity">
+											<a (click)="increaseCount(item.id)" ><i class="fa-regular fa-square-plus fa-2xl"></i></a>
+										</td>
+                                        <td class="product-total">{{item.count}}</td>
+										<td class="product-quantity">
+											<a (click)="decreaseCount(item.id)" ><i class="fa-regular fa-square-minus fa-2xl"></i></a>
+										</td>
+                                    </tr>
+                                }
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="col-lg-4">
+					<div class="total-section">
+						<table class="total-table">
+							<thead class="total-table-head">
+								<tr class="table-total-row">
+									<th>Total</th>
+									<th>Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="total-data">
+									<td><strong>Subtotal: </strong></td>
+									<td>{{cart.data.totalPrice}}</td>
+								</tr>
+								<tr class="total-data">
+									<td><strong>Shipping: </strong></td>
+									<td>${{shippingCost}}</td>
+								</tr>
+								<tr class="total-data">
+									<td><strong>Total: </strong></td>
+									<td>{{ cart.data.totalPrice + shippingCost | currency:'USD' }}</td>
+								</tr>
+
+							</tbody>
+						</table>
+						<div class="cart-buttons">
+							<a routerLink="/checkOut" class="boxed-btn black">Check Out</a>
+						</div>
+					</div>
+
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end cart -->
+<div *ngIf="cart.data.itemCount==0" class="text-center">
+	 <br>
+	 <br>
+
+	<h2>Your cart is empty</h2>
+	<a href="/home" class="btn btn-primary mt-3">Go to Products</a>
+</div>
+	 <br>
+	 <br>
+</body>

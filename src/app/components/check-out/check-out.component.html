@@ -1,0 +1,178 @@
+
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	
+    
+
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="css/responsive.css">
+    <body>
+	
+    <!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>Fresh and Organic</p>
+						<h1>Check Out Product</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<div class="checkout-section mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="checkout-accordion-wrap">
+          <div class="accordion" id="accordionExample">
+            
+            <!-- Billing Address -->
+            <div class="card single-accordion">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse"
+                          data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Billing Address
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                  <div class="billing-address-form">
+                    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+                      <p>
+                        <input type="text" formControlName="name" placeholder="Name">
+                        <span class="text-danger" *ngIf="checkoutForm.get('name')?.invalid && checkoutForm.get('name')?.touched">
+                          Name is required
+                        </span>
+                      </p>
+                      <p>
+                        <input type="email" formControlName="email" placeholder="Email">
+                        <span class="text-danger" *ngIf="checkoutForm.get('email')?.invalid && checkoutForm.get('email')?.touched">
+                          Valid Email is required
+                        </span>
+                      </p>
+                      <p>
+                        <input type="text" formControlName="address" placeholder="Address">
+                        <span class="text-danger" *ngIf="checkoutForm.get('address')?.invalid && checkoutForm.get('address')?.touched">
+                          Address is required
+                        </span>
+                      </p>
+                      <p>
+                        <input type="text" formControlName="city" placeholder="city">
+                        <span class="text-danger" *ngIf="checkoutForm.get('city')?.invalid && checkoutForm.get('city')?.touched">
+                          city is required
+                        </span>
+                      </p>
+                      <p>
+                        <input type="tel" formControlName="phoneNumber" placeholder="phoneNumber">
+                        <span class="text-danger" *ngIf="checkoutForm.get('phoneNumber')?.invalid && checkoutForm.get('phoneNumber')?.touched">
+                          Phone is required
+                        </span>
+                      </p>
+                      
+                      <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.invalid">
+                        Place Order
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+           
+
+            
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Order Summary -->
+      <div class="col-lg-4">
+        <div class="order-details-wrap">
+          <table class="order-details" >
+            <thead>
+              <tr>
+                <th>Your order Details</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody class="order-details-body">
+              <tr>
+                <td>Product</td>
+                <td>Total</td>
+              </tr>
+              <tr *ngFor="let item of cart?.data?.cartItems">
+                <td>{{item.product.name}}</td>
+                <td>${{item.product.price * item.count}}</td>
+              </tr>
+              
+            </tbody>
+            <br>
+            <tbody class="checkout-details">
+              <tr>
+                <td>Subtotal</td>
+                <td>${{cart.data.totalPrice}}</td>
+              </tr>
+              <tr>
+                <td>Shipping</td>
+                <td>$20</td>
+              </tr>
+              <div class="text-white" style="background-color: rgb(2, 139, 180); width: 100%; padding: 5px; border-radius: 5px;">
+              <tr >
+                <td>Total</td>
+                <td style="width: 20rem; font-weight: bold ; font-size: larger;">${{cart.data.totalPrice + 20}}</td>
+              </tr>
+              </div>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+    <!-- end checkout section -->
+
+
+	
+
+	
+	
+	<!-- jquery -->
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="js/sticker.js"></script>
+	<!-- main js -->
+	<script src="js/main.js"></script>
+
+</body>
