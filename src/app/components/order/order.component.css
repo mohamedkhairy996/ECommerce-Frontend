@@ -1,0 +1,150 @@
+/* orders.component.css */
+
+.container-fluid {
+  padding: 20px;
+  background-color: #f9f9f9; /* خلفية فاتحة جداً — مش أسود */
+}
+
+h2 {
+  color: #333;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* زر Create New Order */
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0b5ed7;
+}
+
+/* Search & Pagination Controls */
+.d-flex {
+  gap: 15px;
+}
+
+.form-select,
+.form-control {
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  padding: 6px 12px;
+}
+
+.input-group-text {
+  background-color: #f1f3f5;
+  border: 1px solid #ced4da;
+  border-right: none;
+  color: #495057;
+}
+
+.form-control:focus {
+  border-color: #86b7fe;
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Table Styles */
+.table {
+  background-color: #ffffff; /* أبيض — مش أسود */
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.mat-header-cell {
+  background-color: #f8f9fa; /* رمادي فاتح — مش أسود */
+  font-weight: bold;
+  color: #495057;
+  border-bottom: 2px solid #dee2e6;
+}
+
+.mat-cell {
+  color: #212529;
+  vertical-align: middle;
+}
+
+/* Badges for Status */
+.badge {
+  padding: 0.35em 0.7em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+.badge.bg-warning {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+.badge.bg-info {
+  background-color: #0dcaf0;
+  color: #0f5169;
+}
+
+.badge.bg-success {
+  background-color: #198754;
+  color: #fff;
+}
+
+.badge.bg-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.badge.bg-secondary {
+  background-color: #6c757d;
+  color: #fff;
+}
+
+/* Action Buttons */
+.btn-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+.btn-warning {
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color: #212529;
+}
+
+.btn-warning:hover {
+  background-color: #e0a800;
+  border-color: #e0a800;
+}
+
+/* Pagination */
+.mat-paginator {
+  padding: 16px 0;
+  background-color: #f8f9fa; /* خلفية فاتحة — مش أسود */
+  border-top: 1px solid #dee2e6;
+}
+
+.mat-paginator-page-size .mat-select-trigger {
+  color: #495057;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 15px;
+  }
+
+  .d-flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group {
+    width: 100%;
+  }
+
+  .table {
+    font-size: 0.9rem;
+  }
+  
+}

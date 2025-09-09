@@ -1,0 +1,95 @@
+<div class="container-fluid mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Order Details #{{ order?.id }}</h2>
+    <button mat-raised-button color="primary" (click)="goBack()">
+      <i class="bi bi-arrow-left"></i> Back
+    </button>
+  </div>
+
+  <!-- Order Summary Card -->
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card mb-4 shadow-sm">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Order Summary</h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              <p><strong>Order Date:</strong> {{ formatDate(order?.orderDate) }}</p>
+              <p><strong>Status:</strong> <span [class]="getStatusClass(order?.status)">{{ order?.status }}</span></p>
+              <p><strong>Payment Status:</strong> {{ order?.paymentStatus }}</p>
+            </div>
+            <div class="col-md-6">
+              <p><strong>Total Price:</strong> <strong class="text-success">{{ order?.totalPrice | number:'1.2-2' }} $</strong></p>
+              <p><strong>Tracking Number:</strong> {{ order?.trackingNumber || 'N/A' }}</p>
+              <p><strong>Carrier:</strong> {{ order?.carrier || 'N/A' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Products List -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Products</h5>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of order?.orderItems || []">
+                  <td>{{ item.productName }}</td>
+                  <td>{{ item.price | number:'1.2-2' }} $</td>
+                  <td>{{ item.quantity }}</td>
+                  <td><strong>{{ (item.price * item.quantity) | number:'1.2-2' }} $</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Info Card -->
+    <div class="col-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Customer Info</h5>
+        </div>
+        <div class="card-body">
+          <p><strong>Name:</strong> {{ order?.name }}</p>
+          <p><strong>Phone:</strong> {{ order?.phoneNumber }}</p>
+          <p><strong>Address:</strong> {{ order?.address }}, {{ order?.city }}</p>
+          <p><strong>User ID:</strong> {{ order?.applicationUserId }}</p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="card shadow-sm mt-4">
+        <div class="card-header bg-light">
+          <h5 class="mb-0">Actions</h5>
+        </div>
+        <div class="card-body">
+          <button mat-raised-button color="accent" class="w-100 mb-2" (click)="updateStatus('Approved')" *ngIf="order?.status === 'Pending'">
+            Approve Order
+          </button>
+          <button mat-raised-button color="warn" class="w-100 mb-2" (click)="updateStatus('Cancelled')" *ngIf="order?.status !== 'Cancelled' && order?.status !== 'Delivered'">
+            Cancel Order
+          </button>
+          <button mat-raised-button color="primary" class="w-100" (click)="printOrder()">
+            <i class="bi bi-printer"></i> Print
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

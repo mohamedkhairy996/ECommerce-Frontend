@@ -1,0 +1,66 @@
+<body>
+    <br>
+    <br>
+<div class="container tm-mt-big tm-mb-big">
+  <div class="row">
+    <div class="col-12 mx-auto tm-login-col">
+      <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="tm-block-title mb-4">Welcome to Dashboard, Login</h2>
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-12">
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="tm-login-form" novalidate>
+
+              <!-- Username -->
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input id="username" type="text"
+                       class="form-control validate"
+                       formControlName="username"
+                       [ngClass]="{'is-invalid': submitted && f.username?.errors}" />
+                <div *ngIf="submitted && f.username?.errors" class="invalid-feedback">
+                  <div *ngIf="f.username?.errors?.['required']">Username is required</div>
+                </div>
+              </div>
+
+              <!-- Password -->
+              <div class="form-group mt-3">
+                <label for="password">Password</label>
+                <input id="password" type="password"
+                       class="form-control validate"
+                       formControlName="password"
+                       [ngClass]="{'is-invalid': submitted && f.password?.errors}" />
+                <div *ngIf="submitted && f.password?.errors" class="invalid-feedback">
+                  <div *ngIf="f.password?.errors?.['required']">Password is required</div>
+                  <div *ngIf="f.password?.errors?.['minlength']">Password must be at least 6 characters</div>
+                </div>
+              </div>
+
+              <!-- Login Button -->
+              <div class="form-group mt-4">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                  Login
+                </button>
+              </div>
+
+              <!-- Forgot Password (اختياري) -->
+              <!--
+              <button type="button" class="mt-5 btn btn-primary btn-block text-uppercase"
+                      (click)="onForgotPassword()">
+                Forgot your password?
+              </button>
+              -->
+
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</body>

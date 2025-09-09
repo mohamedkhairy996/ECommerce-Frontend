@@ -1,0 +1,69 @@
+/* order-details.component.css */
+
+.container-fluid {
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  color: #333;
+  font-weight: 600;
+}
+
+.card {
+  border: none;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 15px 20px;
+  font-weight: 500;
+  color: #495057;
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.badge {
+  padding: 0.35em 0.7em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+  font-weight: 500;
+}
+
+.badge.bg-warning { background-color: #ffc107; color: #212529; }
+.badge.bg-info { background-color: #0dcaf0; color: #0f5169; }
+.badge.bg-success { background-color: #198754; color: #fff; }
+.badge.bg-danger { background-color: #dc3545; color: #fff; }
+.badge.bg-secondary { background-color: #6c757d; color: #fff; }
+
+.table th {
+  font-weight: 500;
+  background-color: #f8f9fa;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+.btn {
+  margin: 2px 0;
+}
+
+@media (max-width: 768px) {
+  .container-fluid {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+}

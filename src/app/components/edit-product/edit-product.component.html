@@ -1,0 +1,103 @@
+<body>
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
+        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
+
+          <!-- العنوان -->
+          <div class="row">
+            <div class="col-12">
+              <h2 class="tm-block-title d-inline-block">Update Product</h2>
+            </div>
+          </div>
+
+          <!-- الفورم -->
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()" class="row tm-edit-product-row">
+            <br>
+            <!-- العمود الأول: بيانات المنتج -->
+            <div class="col-xl-6 col-lg-6 col-md-12">
+
+              <!-- اسم المنتج -->
+              <div class="form-group mb-3">
+                <label for="name">Product Name</label>
+                <input id="name" type="text" class="form-control" formControlName="name" />
+              </div>
+
+              <!-- الوصف -->
+              <div class="form-group mb-3">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" rows="3" formControlName="description"></textarea>
+              </div>
+
+              <!-- السعر -->
+              <div class="form-group mb-3">
+                <label for="description">Price</label>
+                <textarea id="price" class="form-control" rows="3" formControlName="price"></textarea>
+              </div>
+
+              <!-- المخازن والكميات -->
+              <div formArrayName="storeQuantities" class="row">
+                <div class="col-12 row mb-3"
+                     *ngFor="let ps of storeQuantities.controls; let i = index"
+                     [formGroupName]="i">
+
+                  <!-- اسم المخزن -->
+                  <div class="col-6">
+                    <label>{{ stocks[i].name }}</label>
+                  </div>
+
+                  <!-- الكمية -->
+                  <div class="col-6">
+                    <label for="stock-{{i}}">Units In Stock</label>
+                    <input id="stock-{{i}}" type="number" class="form-control" formControlName="quantity" />
+                  </div>
+                </div>
+              </div>
+
+            </div> <!-- نهاية العمود الأول -->
+
+            <!-- العمود الثاني: صورة المنتج -->
+            <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+
+              <!-- مكان عرض الصورة -->
+              <div class="tm-product-img-dummy mx-auto"
+                   style="width: 300px; height: 300px; background: #ddd;
+                          display:flex; align-items:center; justify-content:center; border-radius:8px;">
+
+                <!-- لو في صورة -->
+                <img *ngIf="previewUrl; else uploadIcon"
+                     [src]="previewUrl"
+                     class="img-fluid"
+                     style="max-height: 300px; border-radius:8px;" />
+
+                <!-- لو مفيش صورة -->
+                <ng-template #uploadIcon>
+                  <i class="fas fa-cloud-upload-alt tm-upload-icon"
+                     (click)="fileInput.click()"
+                     style="font-size:48px; color:#555; cursor:pointer;"></i>
+                </ng-template>
+              </div>
+
+              <!-- زرار رفع الصورة -->
+              <div class="custom-file mt-3 mb-3">
+                <input #fileInput type="file" style="display:none;" accept="image/*" (change)="onFileSelected($event)" />
+                <button type="button" class="btn btn-primary btn-block mx-auto" (click)="fileInput.click()">
+                  CHANGE PRODUCT IMAGE
+                </button>
+              </div>
+            </div> <!-- نهاية العمود الثاني -->
+
+            <!-- زرار الإضافة -->
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block text-uppercase">
+                Update Now
+              </button>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

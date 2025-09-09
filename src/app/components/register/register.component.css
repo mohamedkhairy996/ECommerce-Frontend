@@ -1,0 +1,18 @@
+.tm-login-form .invalid-feedback {
+  display: block;
+  color: #dc3545;
+  font-size: 0.875em;
+  margin-top: 0.25rem;
+}
+
+.form-check-inline {
+  margin-left: 1rem;
+}
+
+.form-check-label {
+  margin-right: 0.5rem;
+}
+
+.btn-block {
+  width: 100%;
+}

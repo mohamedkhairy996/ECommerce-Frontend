@@ -1,0 +1,12 @@
+<div class="payment-container">
+  <h2>صفحة الدفع</h2>
+  <p><strong>منتج:</strong> منتج تجريبي</p>
+  <p><strong>السعر:</strong> $10.00 USD</p>
+
+  <button 
+    (click)="pay()" 
+    [disabled]="isProcessing"
+    class="pay-button">
+    {{ isProcessing ? 'جاري التوجيه...' : 'ادفع عبر Stripe Checkout' }}
+  </button>
+</div>

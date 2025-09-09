@@ -1,0 +1,12 @@
+.user-auth a {
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: background 0.3s;
+}
+
+.user-auth a:hover {
+    background-color: #f0f0f0; /* Only the link hovered */
+    color: #000;
+}
