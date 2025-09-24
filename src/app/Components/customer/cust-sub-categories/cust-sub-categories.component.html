@@ -1,0 +1,73 @@
+<!-- banner.component.html -->
+<section class="popular-categories section-padding">
+    <div class="container wow animate__animated animate__fadeIn">
+        <div class="section-title">
+            <div class="title">
+                <h3>Featured Categories</h3>
+            </div>
+            <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows"></div>
+        </div>
+
+
+
+  <!-- <div class="carausel-12-columns-cover position-relative">
+
+    <button class="slider-btn slider-prev" (click)="prev()">
+    <i class="fi-rs-angle-small-left"></i>
+  </button>
+  <div class="carausel-10-columns" id="categoryCarousel" #categoryCarousel>
+  <div class="card-2"
+       *ngFor="let cat of categories; let i = index"
+       [style.background]="colors[i % colors.length]">
+    <figure class="img-hover-scale overflow-hidden">
+      <a href="shop-grid-right.html"><img [src]="cat.banner" [alt]="cat.name" /></a>
+    </figure>
+    <h6><a href="shop-grid-right.html">{{ cat.name }}</a></h6>
+    <span>{{ cat.slug }} items</span>
+  </div>
+  </div>
+  <button class="slider-btn slider-next" (click)="next()">
+    <i class="fi-rs-angle-small-right"></i>
+  </button>
+</div> -->
+
+<section class="popular-categories section-padding">
+  <div class="container wow animate__animated animate__fadeIn">
+    <div class="section-title">
+      <div class="title">
+        <h3>Featured Categories</h3>
+      </div>
+    </div>
+
+    <!-- الصف الأول -->
+    <div class="carousel-container">
+      <button class="slider-btn slider-prev" (click)="prev(1)">‹</button>
+
+      <div class="carousel-track" #carouselTrack1>
+        <div class="card-2" *ngFor="let cat of firstHalf">
+          <img [src]="cat.banner" [alt]="cat.name" />
+          <h6>{{ cat.name }}</h6>
+        </div>
+      </div>
+
+      <button class="slider-btn slider-next" (click)="next(1)">›</button>
+    </div>
+
+    <!-- الصف الثاني -->
+    <div class="carousel-container">
+      <button class="slider-btn slider-prev" (click)="prev(2)">‹</button>
+
+      <div class="carousel-track" #carouselTrack2>
+        <div class="card-2" *ngFor="let cat of secondHalf">
+          <img [src]="cat.banner" [alt]="cat.name" />
+          <h6>{{ cat.name }}</h6>
+        </div>
+      </div>
+
+      <button class="slider-btn slider-next" (click)="next(2)">›</button>
+    </div>
+  </div>
+</section>
+
+
+

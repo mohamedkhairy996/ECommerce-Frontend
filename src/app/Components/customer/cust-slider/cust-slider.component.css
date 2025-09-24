@@ -1,0 +1,84 @@
+.hero-slider-1 {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 500px; /* adjust as needed */
+}
+
+.single-hero-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+
+.single-hero-slider.active {
+  opacity: 1;
+}
+
+.slider-content h1 {
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.slider-content p {
+  color: #fff;
+  font-size: 1.1rem;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+}
+
+.form-subcriber input {
+  padding: 10px 15px;
+  border: none;
+  outline: none;
+  width: 250px;
+  margin-right: 10px;
+}
+
+.form-subcriber .btn {
+  padding: 10px 20px;
+  background: #ff6700;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-sizing: border-box;
+  z-index: 10;
+}
+
+.slider-arrow button {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(5px);
+}
+
+.slider-arrow button:hover {
+  background: rgba(2, 219, 23, 0.3);
+}

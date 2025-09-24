@@ -1,0 +1,47 @@
+.carousel-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease;
+  gap: 20px; /* بدل margin على الكارت */
+}
+
+
+.card-2 {
+  flex: 0 0 calc((100% - (7 * 20px)) / 8); /* 7 فراغات بين 8 كروت */
+  padding: 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+
+.card-2 img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 24px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 30%;
+  z-index: 10;
+}
+
+.slider-prev {
+  left: 5px;
+}
+
+.slider-next {
+  right: 5px;
+}
