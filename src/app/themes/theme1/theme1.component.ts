@@ -8,10 +8,15 @@ import { CustProductsComponent } from "../../Components/customer/cust-products/c
 import { CustFooterComponent } from "../../Components/customer/cust-footer/cust-footer.component";
 import { CustBannerComponent } from "../../Components/customer/cust-banner/cust-banner.component";
 import { CustSubCategoriesComponent } from '../../Components/customer/cust-sub-categories/cust-sub-categories.component';
+import { CustBanner2Component } from "../../Components/customer/cust-banner2/cust-banner2.component";
+import { CustFeaturedProductsComponent } from "../../Components/customer/cust-featured-products/cust-featured-products.component";
+import { CustBanner3Component } from "../../Components/customer/cust-banner3/cust-banner3.component";
+import { CustToDayDealsProductsComponent } from "../../Components/customer/cust-to-day-deals-products/cust-to-day-deals-products.component";
+import { CustBestSellerProductsComponent } from "../../Components/customer/cust-best-seller-products/cust-best-seller-products.component";
 
 @Component({
   selector: 'app-theme1',
-  imports: [CustTopbarComponent, CustHeaderComponent, CustNavbarComponent, CustSliderComponent, CustCategoriesComponent, CustProductsComponent, CustFooterComponent, CustSubCategoriesComponent, CustBannerComponent],
+  imports: [CustTopbarComponent, CustHeaderComponent, CustNavbarComponent, CustSliderComponent, CustCategoriesComponent, CustFooterComponent, CustSubCategoriesComponent, CustBannerComponent, CustBanner2Component, CustFeaturedProductsComponent, CustBanner3Component, CustToDayDealsProductsComponent, CustBestSellerProductsComponent],
   templateUrl: './theme1.component.html',
   styleUrl: '../../../assets/css/main.css'
 })

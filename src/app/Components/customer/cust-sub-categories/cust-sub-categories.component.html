@@ -3,7 +3,7 @@
     <div class="container wow animate__animated animate__fadeIn">
         <div class="section-title">
             <div class="title">
-                <h3>Featured Categories</h3>
+                <h3>Sub Categories</h3>
             </div>
             <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows"></div>
         </div>
@@ -30,41 +30,20 @@
     <i class="fi-rs-angle-small-right"></i>
   </button>
 </div> -->
-
-<section class="popular-categories section-padding">
-  <div class="container wow animate__animated animate__fadeIn">
-    <div class="section-title">
-      <div class="title">
-        <h3>Featured Categories</h3>
-      </div>
-    </div>
-
     <!-- الصف الأول -->
-    <div class="carousel-container">
-      <button class="slider-btn slider-prev" (click)="prev(1)">‹</button>
+    <div class="carousel-container ">
+      <button class="slider-btn slider-prev" (click)="prev(1)"><i class="bi bi-arrow-left-circle"></i></button>
 
-      <div class="carousel-track" #carouselTrack1>
-        <div class="card-2" *ngFor="let cat of firstHalf">
-          <img [src]="cat.banner" [alt]="cat.name" />
-          <h6>{{ cat.name }}</h6>
+      <div class="carousel-track center-items" #carouselTrack1>
+        <div class="card-2" *ngFor="let cat of subCategories">
+            <a (click)="onSubSelected(cat.id)">
+              <img [src]="`assets/uploads/images/categories/${cat.code}-0c.png`" [alt]="cat.name" />
+              <h6>{{ cat.name }}</h6>
+            </a>
         </div>
       </div>
 
-      <button class="slider-btn slider-next" (click)="next(1)">›</button>
-    </div>
-
-    <!-- الصف الثاني -->
-    <div class="carousel-container">
-      <button class="slider-btn slider-prev" (click)="prev(2)">‹</button>
-
-      <div class="carousel-track" #carouselTrack2>
-        <div class="card-2" *ngFor="let cat of secondHalf">
-          <img [src]="cat.banner" [alt]="cat.name" />
-          <h6>{{ cat.name }}</h6>
-        </div>
-      </div>
-
-      <button class="slider-btn slider-next" (click)="next(2)">›</button>
+      <button class="slider-btn slider-next" (click)="next(1)"><i class="bi bi-arrow-right-circle"></i></button>
     </div>
   </div>
 </section>

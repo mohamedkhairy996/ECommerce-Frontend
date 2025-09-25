@@ -1,9 +1,10 @@
+
 <!-- banner.component.html -->
 <section class="popular-categories section-padding">
     <div class="container wow animate__animated animate__fadeIn">
         <div class="section-title">
             <div class="title">
-                <h3>Featured Categories</h3>
+                <h3>Best Seller Products</h3>
             </div>
             <div class="slider-arrow slider-arrow-2 flex-right carausel-10-columns-arrow" id="carausel-10-columns-arrows"></div>
         </div>
@@ -14,14 +15,17 @@
       <button class="slider-btn slider-prev" (click)="prev(1)"><i class="bi bi-arrow-left-circle"></i></button>
 
       <div class="carousel-track" #carouselTrack1>
-        <div class="card-2" *ngFor="let cat of categories">
-          <a (click)="onStoreSelected(cat.id,cat)">
-          <img [src]="`assets/uploads/images/categories/${cat.code}-0c.png`" [alt]="cat.name" />
-          <p>{{ cat.name }}</p>
+        <div class="card-2" *ngFor="let prd of Products">
+          <a (click)="'#'">
+<img 
+  [src]="'assets/uploads/images/products/' + prd.photos + '-0p.png'" 
+  [alt]="prd.name" 
+  (error)="handleImgError($event)" />
+          <p>{{ prd.name }}</p>
+          <h5>{{ prd.mainPrice|currency}}</h5>
           </a>
         </div>
       </div>
-
       <a class="slider-btn slider-next" (click)="next(1)"><i class="bi bi-arrow-right-circle"></i></a>
     </div>
 </div>

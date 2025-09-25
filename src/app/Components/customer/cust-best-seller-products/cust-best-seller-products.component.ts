@@ -1,89 +1,85 @@
-import {
-  Component,
-  ElementRef,
-  ViewChild,
-  HostListener,
-  OnInit,
-  AfterViewInit,
-  OnDestroy
-} from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Category } from '../../../models/category';
-import { CategoryService } from '../../../services/category.service';
-import { setStoreInfo } from '../../../Store/Category_info/category.action';
-import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy, HostListener, ElementRef, ViewChild } from '@angular/core';
+import { CommonModule, JsonPipe } from '@angular/common';
+import { catchError, of, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ProductDataDto } from '../../../models/product-data-dto';
+import { ProductService } from '../../../services/product.service';
 
 @Component({
-  selector: 'app-cust-categories',
+  selector: 'app-cust-best-seller-products',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './cust-categories.component.html',
-  styleUrls: ['./cust-categories.component.css']
+  templateUrl: './cust-best-seller-products.component.html',
+  styleUrl:'./cust-best-seller-products.component.css'
 })
-export class CustCategoriesComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('carouselTrack1') carouselTrack1!: ElementRef;
-
-  categories: Category[] = [];
-  visibleItems = 8;
+export class CustBestSellerProductsComponent implements OnInit, OnDestroy {
+  Products: ProductDataDto[] = [];
+  totalPages: number = 1;
+  isLoading: boolean = false;
+  error: string | null = null;
+   visibleItems = 8;
   isAnimating = false;
   currentIndex1 = 0;
-  storeSubscription!: Subscription;
-
-  // 🟢 دعم السحب باللمس/الماوس
+ // 🟢 دعم السحب باللمس/الماوس
   private touchStartX = 0;
   private touchEndX = 0;
 
   private isDragging = false;
   private startX = 0;
   private endX = 0;
+  private destroy$ = new Subject<void>();
+  photo:string="assets/uploads/images/products/noimage-0p.png";
 
-  constructor(
-    private categoryService: CategoryService,
-    private store: Store<any>
-  ) {}
+  constructor(private productService: ProductService) {}
 
-  ngOnInit() {
-    this.fetchCategories(1);
+  ngOnInit(): void {
+    this.loadProducts();
   }
 
-  ngAfterViewInit() {
-    this.updateVisibleItems();
-    this.updateCarousel(1);
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
-    const track = this.carouselTrack1?.nativeElement;
-    if (track) {
-      // ✅ اللمس
-      track.addEventListener('touchstart', this.onTouchStart.bind(this), { passive: true });
-      track.addEventListener('touchend', this.onTouchEnd.bind(this), { passive: true });
+  loadProducts(): void {
+    this.isLoading = true;
+    this.error = null;
 
-      // ✅ السحب بالماوس
-      track.addEventListener('mousedown', this.onMouseDown.bind(this));
-      window.addEventListener('mouseup', this.onMouseUp.bind(this));
-      window.addEventListener('mousemove', this.onMouseMove.bind(this));
+    this.productService.getBestSellerProducts(2,0)
+      .pipe(
+        takeUntil(this.destroy$),
+        catchError(error => {
+          console.error('Error loading best seller products:', error);
+          this.error = 'Failed to load best seller products.';
+          this.isLoading = false;
+          return of();
+        })
+      )
+      .subscribe(result => {
+        this.Products = result.data || [];
+        this.totalPages = result.meta?.lastPage || 1;
+        this.isLoading = false;
+        console.log(result.data);
+      });
+  }
+
+  onPageChange(page: number): void {
+    if (page >= 1 && page <= this.totalPages) {
+      this.loadProducts();
     }
   }
 
-  ngOnDestroy() {
-    this.storeSubscription?.unsubscribe();
+  getPagesArray(): number[] {
+    if (this.totalPages <= 0) return [];
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
   }
 
-  fetchCategories(storeId: number) {
-    this.categoryService.getCategories(storeId).subscribe((res) => {
-      this.categories = res.data;
-      this.updateVisibleItems();
-      this.updateCarousel(1);
-    });
-  }
+handleImgError(event: Event) {
+  const target = event.target as HTMLImageElement;
+  target.src = this.photo; // صورة افتراضية
+}
 
-  selectStore(storeId: number, color: string): void {
-    this.store.dispatch(setStoreInfo({ storeId, color }));
-  }
-
-  onStoreSelected(id: number, cat: Category) {
-    this.selectStore(id, '#F4F6FA');
-  }
-
+  
   @HostListener('window:resize')
   updateVisibleItems() {
     const width = window.innerWidth;
@@ -93,13 +89,15 @@ export class CustCategoriesComponent implements OnInit, AfterViewInit, OnDestroy
     else if (width <= 1200) this.visibleItems = 5;
     else this.visibleItems = 8;
 
-    const maxIndex = this.categories.length - this.visibleItems;
+    const maxIndex = this.Products.length - this.visibleItems;
     if (this.currentIndex1 > maxIndex) {
       this.currentIndex1 = Math.max(0, maxIndex);
     }
 
     this.updateCarousel(1);
   }
+
+  @ViewChild('carouselTrack1') carouselTrack1!: ElementRef;
 
   updateCarousel(row: number) {
     const track = row === 1 ? this.carouselTrack1?.nativeElement : null;
@@ -114,7 +112,7 @@ export class CustCategoriesComponent implements OnInit, AfterViewInit, OnDestroy
   next(row: number) {
     if (this.isAnimating) return;
 
-    const maxIndex = this.categories.length - this.visibleItems;
+    const maxIndex = this.Products.length - this.visibleItems;
 
     if (row === 1) {
       this.currentIndex1 = this.currentIndex1 < maxIndex ? this.currentIndex1 + 1.16 : 0;
@@ -125,7 +123,7 @@ export class CustCategoriesComponent implements OnInit, AfterViewInit, OnDestroy
   prev(row: number) {
     if (this.isAnimating) return;
 
-    const maxIndex = this.categories.length - this.visibleItems;
+    const maxIndex = this.Products.length - this.visibleItems;
 
     if (row === 1) {
       this.currentIndex1 = this.currentIndex1 > 0 ? this.currentIndex1 - 1 : maxIndex + 0.16;
